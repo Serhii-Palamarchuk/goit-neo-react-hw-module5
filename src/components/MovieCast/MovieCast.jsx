@@ -30,15 +30,18 @@ const MovieCast = () => {
     <ul className={styles.list}>
       {cast.map((actor) => (
         <li key={actor.cast_id} className={styles.item}>
-          <img
-            src={
-              actor.profile_path
-                ? `${IMG_BASE_URL}${actor.profile_path}`
-                : "https://via.placeholder.com/100x150?text=No+Image"
-            }
-            alt={actor.name}
-            className={styles.photo}
-          />
+          {actor.profile_path ? (
+            <img
+              src={`${IMG_BASE_URL}${actor.profile_path}`}
+              alt={actor.name}
+              className={styles.photo}
+            />
+          ) : (
+            <div className={styles.placeholder}>
+              <span>No photo</span>
+            </div>
+          )}
+
           <p>
             <strong>{actor.name}</strong>
           </p>
