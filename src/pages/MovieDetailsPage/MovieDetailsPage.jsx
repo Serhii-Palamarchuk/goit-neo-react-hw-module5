@@ -35,12 +35,14 @@ const MovieDetailsPage = () => {
       </Link>
 
       <div className={styles.details}>
-        {movie.poster_path && (
+        {movie.poster_path ? (
           <img
             className={styles.poster}
             src={`${IMG_BASE_URL}${movie.poster_path}`}
             alt={movie.title}
           />
+        ) : (
+          <div className={styles.placeholder}>No image</div>
         )}
 
         <div>

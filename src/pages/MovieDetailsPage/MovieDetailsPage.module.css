@@ -14,3 +14,16 @@
   display: flex;
   gap: 12px;
 }
+
+.placeholder {
+  width: 200px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ccc;
+  color: #555;
+  font-size: 14px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
