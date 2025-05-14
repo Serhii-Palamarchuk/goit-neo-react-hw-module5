@@ -1,14 +1,20 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link, NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
-import { getMovieDetails } from '../../services/api';
-import styles from './MovieDetailsPage.module.css';
+import { useEffect, useRef, useState } from "react";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
+import { getMovieDetails } from "../../services/api";
+import styles from "./MovieDetailsPage.module.css";
 
-const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w300';
+const IMG_BASE_URL = "https://image.tmdb.org/t/p/w300";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const location = useLocation();
-  const backLinkRef = useRef(location.state?.from || '/movies');
+  const backLinkRef = useRef(location.state?.from || "/movies");
 
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null);
@@ -19,7 +25,7 @@ const MovieDetailsPage = () => {
         const data = await getMovieDetails(movieId);
         setMovie(data);
       } catch {
-        setError('Movie not found');
+        setError("Movie not found");
       }
     };
 
@@ -49,13 +55,13 @@ const MovieDetailsPage = () => {
           <h2>{movie.title}</h2>
           <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
           <p>Overview: {movie.overview}</p>
-          <p>Genres: {movie.genres.map(g => g.name).join(', ')}</p>
+          <p>Genres: {movie.genres.map((g) => g.name).join(", ")}</p>
         </div>
       </div>
 
       <div className={styles.links}>
-        <NavLink to="cast">Cast</NavLink>
-        <NavLink to="reviews">Reviews</NavLink>
+        <NavLink to={`/movies/${movieId}/cast`}>Cast</NavLink>
+        <NavLink to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
       </div>
 
       <Outlet />
