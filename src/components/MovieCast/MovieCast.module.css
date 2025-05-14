@@ -21,11 +21,10 @@
   transform: translateY(-3px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .photo,
 .placeholder {
-  width: 120px;
-  height: 180px;
+  width: 160px;
+  height: 210px;
   display: flex;
   align-items: center;
   justify-content: center;
