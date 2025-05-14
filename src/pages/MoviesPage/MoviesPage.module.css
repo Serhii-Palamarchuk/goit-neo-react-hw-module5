@@ -1,0 +1,9 @@
+.container {
+  padding: 24px;
+}
+
+.form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
