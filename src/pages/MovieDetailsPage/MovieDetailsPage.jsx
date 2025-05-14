@@ -3,6 +3,8 @@ import { Link, NavLink, Outlet, useLocation, useParams } from 'react-router-dom'
 import { getMovieDetails } from '../../services/api';
 import styles from './MovieDetailsPage.module.css';
 
+const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w300';
+
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const location = useLocation();
@@ -31,10 +33,23 @@ const MovieDetailsPage = () => {
       <Link to={backLinkRef.current} className={styles.back}>
         ← Go back
       </Link>
-      <h2>{movie.title}</h2>
-      <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
-      <p>Overview: {movie.overview}</p>
-      <p>Genres: {movie.genres.map(g => g.name).join(', ')}</p>
+
+      <div className={styles.details}>
+        {movie.poster_path && (
+          <img
+            className={styles.poster}
+            src={`${IMG_BASE_URL}${movie.poster_path}`}
+            alt={movie.title}
+          />
+        )}
+
+        <div>
+          <h2>{movie.title}</h2>
+          <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
+          <p>Overview: {movie.overview}</p>
+          <p>Genres: {movie.genres.map(g => g.name).join(', ')}</p>
+        </div>
+      </div>
 
       <div className={styles.links}>
         <NavLink to="cast">Cast</NavLink>
