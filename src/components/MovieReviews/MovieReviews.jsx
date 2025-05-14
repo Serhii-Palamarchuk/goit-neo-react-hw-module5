@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getMovieReviews } from '../../services/api';
-import styles from './MovieReviews.module.css';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getMovieReviews } from "../../services/api";
+import styles from "./MovieReviews.module.css";
 
 const MovieReviews = () => {
   const { movieId } = useParams();
@@ -14,7 +14,7 @@ const MovieReviews = () => {
         const data = await getMovieReviews(movieId);
         setReviews(data.results);
       } catch {
-        setError('Failed to load reviews');
+        setError("Failed to load reviews");
       }
     };
 
@@ -26,10 +26,12 @@ const MovieReviews = () => {
 
   return (
     <ul className={styles.list}>
-      {reviews.map(r => (
-        <li key={r.id} className={styles.item}>
-          <p><strong>Author:</strong> {r.author}</p>
-          <p>{r.content}</p>
+      {reviews.map((review) => (
+        <li key={review.id} className={styles.item}>
+          <p className={styles.author}>
+            Author: <strong>{review.author}</strong>
+          </p>
+          <p className={styles.content}>{review.content}</p>
         </li>
       ))}
     </ul>
